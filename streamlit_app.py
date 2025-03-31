@@ -70,7 +70,7 @@ def query_ollama(prompt):
 
 # Streamlit 应用
 st.set_page_config(
-    page_title="钱袋萌虎",
+    page_title="钱袋萌虎(Tiger Wealth)",
     page_icon="📊",
     layout="wide"
 )
@@ -79,11 +79,13 @@ st.set_page_config(
 st.image("logo.png", width=50)  # 确保 logo.png 文件在您的工作目录中
 
 
-st.title("金融反诈骗咨询助手")
+st.title("钱袋萌虎 (Tiger Wealth)")
 st.markdown("与小虎反诈助手聊天，获取相关信息和建议。")
+st.markdown("Chat with Tiger Wealth, An Anti-Fraud Assistant, to get relevant information and advice!")
+
 
 # Chat input
-user_input = st.text_input("来聊聊天吧:", placeholder="Type your message here...")
+user_input = st.text_input("来聊聊天吧/Let's Talk:", placeholder="Type your message here...")
 
 
 
@@ -110,6 +112,6 @@ if user_input:
     with st.spinner("思考中/Thinking..."):
         # Query Ollama and get response
         bot_response = query_ollama(prompt=user_input)
-        st.markdown(f"**用户:** {user_input}")
-        st.markdown(f"**小虎:** {bot_response.generations[0][0].text}")
+        st.markdown(f"**用户(User):** {user_input}")
+        st.markdown(f"**小虎(Tiger):** {bot_response.generations[0][0].text}")
     
