@@ -5,3 +5,4 @@ langchain_huggingface
 unstructured
 chromadb
 langchain-community
+pysqlite3-binary
