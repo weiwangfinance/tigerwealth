@@ -5,6 +5,7 @@ from langchain.vectorstores import Chroma
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.document_loaders import DirectoryLoader
 from langchain_huggingface import HuggingFaceEmbeddings
+from streamlit.components.v1 import html
 
 __import__('pysqlite3')
 import sys
@@ -20,7 +21,11 @@ SPARKAI_APP_ID = os.getenv("SPARKAI_APP_ID")
 SPARKAI_API_SECRET = os.getenv("SPARKAI_API_SECRET")
 SPARKAI_API_KEY = os.getenv("SPARKAI_API_KEY")
 
-
+SPARKAI_APP_ID = '46909103'
+SPARKAI_API_SECRET = 'MTU1YWQ5MGFkNzhkYTBmM2NjNzMyYTBj'
+SPARKAI_API_KEY = 'e8583878e386f949c0776808a7160823'
+ 
+ 
  
 # 加载文件夹中的所有txt类型的文件
 loader = DirectoryLoader('./documents/', glob='*.txt')
