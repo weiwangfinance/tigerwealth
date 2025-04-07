@@ -25,22 +25,22 @@ SPARKAI_API_KEY = os.getenv("SPARKAI_API_KEY")
  
  
 # 加载文件夹中的所有txt类型的文件
-loader = DirectoryLoader('./documents/', glob='*.txt')
+#loader = DirectoryLoader('./documents/', glob='*.txt')
 # 将数据转成 document 对象，每个文件会作为一个 document
-documents = loader.load()
+#documents = loader.load()
 # 初始化加载器
-text_splitter = CharacterTextSplitter(chunk_size=100, chunk_overlap=0)
+#text_splitter = CharacterTextSplitter(chunk_size=100, chunk_overlap=0)
 # 切割加载的 document
-split_docs = text_splitter.split_documents(documents)
+#split_docs = text_splitter.split_documents(documents)
 # Load embedding model 
-embed_model = HuggingFaceEmbeddings(model_name="BAAI/bge-small-en-v1.5")
+#embed_model = HuggingFaceEmbeddings(model_name="BAAI/bge-small-en-v1.5")
 
 
 # 将 document 通过 openai 的 embeddings 对象计算 embedding 向量信息并临时存入 Chroma 向量数据库，用于后续匹配查询
-docsearch = Chroma.from_documents(split_docs, embed_model, persist_directory="./vector_store")
-docsearch.persist()
+#docsearch = Chroma.from_documents(split_docs, embed_model, persist_directory="./vector_store")
+#docsearch.persist()
 # 加载数据
-docsearch = Chroma(persist_directory="./vector_store", embedding_function=embed_model)
+#docsearch = Chroma(persist_directory="./vector_store", embedding_function=embed_model)
 
 
 
@@ -97,12 +97,12 @@ if user_input:
     st.session_state.conversation.append({"role": "user", "content": user_input})
     with st.spinner("思考中/Thinking..."):
         # 加载之前持久化数据（k值为选取4个最匹配结果输出）
-        similarDocs = docsearch.similarity_search(user_input, k=1)
-        info = ""
-        for similardoc in similarDocs:
-            info = info + similardoc.page_content
-        question = "结合以下信息：" + info + "回答" + user_input
-
+        #similarDocs = docsearch.similarity_search(user_input, k=1)
+        #info = ""
+        #for similardoc in similarDocs:
+        #    info = info + similardoc.page_content
+        #question = "结合以下信息：" + info + "回答" + user_input
+        question =  user_input
         # Query Ollama and get response
         bot_response = query_ollama(prompt=question )
         st.session_state.conversation.append({"role": "bot", "content": bot_response.generations[0][0].text})
